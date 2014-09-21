@@ -64,6 +64,7 @@
 	    }, Staff());
 	  }});
 	ReactRenderComponent(App(), document.body);
+	console.log('test change');
 
 
 /***/ },
