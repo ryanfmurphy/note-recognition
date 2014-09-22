@@ -2445,9 +2445,9 @@
 	var ReactCreateClass = __webpack_require__(2).createClass,
 	    ReactDOM = __webpack_require__(4);
 	module.exports = ReactCreateClass({
-	  getDefaultProps: (function() {
-	    return ({scale: 1});
-	  }),
+	  getDefaultProps: function() {
+	    return {scale: 1};
+	  },
 	  render: function() {
 	    var $__0 = ReactDOM,
 	        svg = $__0.svg,
