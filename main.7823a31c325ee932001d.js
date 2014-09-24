@@ -76,11 +76,16 @@
 	    range = __webpack_require__(38);
 	var TrebleClef = __webpack_require__(6),
 	    WholeNote = __webpack_require__(7);
-	module.exports = ReactCreateClass({render: function() {
+	module.exports = ReactCreateClass({
+	  getDefaultProps: function() {
+	    return {staffPosition: Math.floor(Math.random() * 7)};
+	  },
+	  render: function() {
 	    var $__0 = ReactDOM,
 	        svg = $__0.svg,
 	        rect = $__0.rect,
-	        topSpacing = 10;
+	        topSpacing = 10,
+	        staffPosition = this.props.staffPosition;
 	    return svg({}, range(0 + topSpacing, 50 + topSpacing, 10).map((function(y) {
 	      return rect({
 	        y: y,
@@ -88,8 +93,9 @@
 	        height: 1,
 	        fill: 'black'
 	      });
-	    })), TrebleClef({scale: .15}), WholeNote());
-	  }});
+	    })), TrebleClef({scale: .15}), WholeNote({staffPosition: staffPosition}));
+	  }
+	});
 
 
 /***/ },
