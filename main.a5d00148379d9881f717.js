@@ -55,18 +55,22 @@
 	var Staff = __webpack_require__(1),
 	    AnswerEntry = __webpack_require__(2);
 	var pitchClasses = new Rx.BehaviorSubject,
-	    answers = new Rx.Subject;
+	    answers = new Rx.BehaviorSubject,
+	    last2PitchClasses = pitchClasses.scan([null, null], (function($__0, current) {
+	      var $__1 = $__0,
+	          _ = $__1[0],
+	          last = $__1[1];
+	      return [last, current];
+	    })),
+	    lastPitchClass;
 	var App = ReactCreateClass({render: function() {
 	    var $__0 = ReactDOM,
 	        div = $__0.div,
 	        svg = $__0.svg;
-	    return div({}, svg({
-	      version: '1.1',
-	      baseProfile: 'full',
-	      width: '100%',
-	      height: '100',
-	      xmlns: 'http://www.w3.org/2000/svg'
-	    }, Staff({pitchClass: pitchClasses.value})), AnswerEntry({onAnswer: answers.onNext.bind(answers)}));
+	    return div({}, Staff({pitchClass: pitchClasses.value}), AnswerEntry({
+	      onAnswer: answers.onNext.bind(answers),
+	      markCorrect: answers.value === lastPitchClass ? answers.value : null
+	    }));
 	  }});
 	answers.subscribe(function(answer) {
 	  if (answer === pitchClasses.value)
@@ -74,6 +78,15 @@
 	});
 	pitchClasses.subscribe((function() {
 	  return ReactRenderComponent(App(), document.body);
+	}));
+	answers.subscribe((function() {
+	  return ReactRenderComponent(App(), document.body);
+	}));
+	last2PitchClasses.subscribe((function($__0) {
+	  var $__1 = $__0,
+	      last = $__1[0],
+	      _ = $__1[1];
+	  return lastPitchClass = last;
 	}));
 	pitchClasses.onNext(sample(Staff.pitchClasses));
 
@@ -100,7 +113,13 @@
 	        rect = $__0.rect,
 	        topSpacing = 10,
 	        staffPosition = pitchClasses.indexOf(this.props.pitchClass);
-	    return svg({}, range(0 + topSpacing, 50 + topSpacing, 10).map((function(y) {
+	    return svg({
+	      version: '1.1',
+	      baseProfile: 'full',
+	      width: '100%',
+	      height: '100',
+	      xmlns: 'http://www.w3.org/2000/svg'
+	    }, range(0 + topSpacing, 50 + topSpacing, 10).map((function(y) {
 	      return rect({
 	        y: y,
 	        width: '100%',
@@ -127,9 +146,12 @@
 	var pitchClassesSorted = Staff.pitchClasses.slice(0).sort();
 	module.exports = ReactCreateClass({
 	  getDefaultProps: function() {
-	    return {onAnswer: (function(_) {
+	    return {
+	      onAnswer: (function(_) {
 	        return null;
-	      })};
+	      }),
+	      markCorrect: null
+	    };
 	  },
 	  handleClick: function(event) {
 	    this.props.onAnswer(event.target.textContent);
@@ -140,8 +162,11 @@
 	        div = $__1.div,
 	        button = $__1.button;
 	    return div({}, pitchClassesSorted.map((function(pc) {
+	      var className = 'AnswerEntry-button';
+	      if ($__0.props.markCorrect === pc)
+	        className += ' AnswerEntry-button--correct';
 	      return button({
-	        className: 'AnswerEntry-button',
+	        className: className,
 	        onClick: $__0.handleClick
 	      }, pc);
 	    })));
@@ -16299,7 +16324,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(80)();
-	exports.push([module.id, ".AnswerEntry-button {\n  width: 25%;\n  height: 50px;\n  font-size: 20px;\n}\n", ""]);
+	exports.push([module.id, ".AnswerEntry-button {\n  width: 25%;\n  height: 50px;\n  font-size: 20px;\n}\n\n.AnswerEntry-button--correct {\n  background-color: green;\n  color: white;\n}\n", ""]);
 
 /***/ },
 /* 44 */
@@ -28632,7 +28657,7 @@
 	var bind = __webpack_require__(167),
 	    identity = __webpack_require__(168),
 	    setBindData = __webpack_require__(169),
-	    support = __webpack_require__(170);
+	    support = __webpack_require__(173);
 
 	/** Used to detected named functions */
 	var reFuncName = /^\s*function[ \n\r\t]+\w/;
@@ -28716,8 +28741,8 @@
 	 * Available under MIT license <http://lodash.com/license>
 	 */
 	var baseCreateCallback = __webpack_require__(158),
-	    keys = __webpack_require__(171),
-	    objectTypes = __webpack_require__(172);
+	    keys = __webpack_require__(170),
+	    objectTypes = __webpack_require__(171);
 
 	/**
 	 * Iterates over own enumerable properties of an object, executing the callback
@@ -28811,7 +28836,7 @@
 	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <http://lodash.com/license>
 	 */
-	var objectTypes = __webpack_require__(173);
+	var objectTypes = __webpack_require__(172);
 
 	/**
 	 * Checks if `value` is the language type of Object.
@@ -29528,6 +29553,100 @@
 /* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/**
+	 * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+	 * Build: `lodash modularize modern exports="npm" -o ./npm/`
+	 * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+	 * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 * Available under MIT license <http://lodash.com/license>
+	 */
+	var isNative = __webpack_require__(181),
+	    isObject = __webpack_require__(182),
+	    shimKeys = __webpack_require__(183);
+
+	/* Native method shortcuts for methods with the same name as other `lodash` methods */
+	var nativeKeys = isNative(nativeKeys = Object.keys) && nativeKeys;
+
+	/**
+	 * Creates an array composed of the own enumerable property names of an object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @category Objects
+	 * @param {Object} object The object to inspect.
+	 * @returns {Array} Returns an array of property names.
+	 * @example
+	 *
+	 * _.keys({ 'one': 1, 'two': 2, 'three': 3 });
+	 * // => ['one', 'two', 'three'] (property order is not guaranteed across environments)
+	 */
+	var keys = !nativeKeys ? shimKeys : function(object) {
+	  if (!isObject(object)) {
+	    return [];
+	  }
+	  return nativeKeys(object);
+	};
+
+	module.exports = keys;
+
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+	 * Build: `lodash modularize modern exports="npm" -o ./npm/`
+	 * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+	 * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 * Available under MIT license <http://lodash.com/license>
+	 */
+
+	/** Used to determine if values are of the language type Object */
+	var objectTypes = {
+	  'boolean': false,
+	  'function': true,
+	  'object': true,
+	  'number': false,
+	  'string': false,
+	  'undefined': false
+	};
+
+	module.exports = objectTypes;
+
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+	 * Build: `lodash modularize modern exports="npm" -o ./npm/`
+	 * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+	 * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 * Available under MIT license <http://lodash.com/license>
+	 */
+
+	/** Used to determine if values are of the language type Object */
+	var objectTypes = {
+	  'boolean': false,
+	  'function': true,
+	  'object': true,
+	  'number': false,
+	  'string': false,
+	  'undefined': false
+	};
+
+	module.exports = objectTypes;
+
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
 	 * Build: `lodash modularize modern exports="npm" -o ./npm/`
@@ -29536,7 +29655,7 @@
 	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <http://lodash.com/license>
 	 */
-	var isNative = __webpack_require__(181);
+	var isNative = __webpack_require__(184);
 
 	/** Used to detect functions containing a `this` reference */
 	var reThis = /\bthis\b/;
@@ -29570,100 +29689,6 @@
 	module.exports = support;
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
-
-/***/ },
-/* 171 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
-	 * Build: `lodash modularize modern exports="npm" -o ./npm/`
-	 * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
-	 * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
-	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-	 * Available under MIT license <http://lodash.com/license>
-	 */
-	var isNative = __webpack_require__(182),
-	    isObject = __webpack_require__(183),
-	    shimKeys = __webpack_require__(184);
-
-	/* Native method shortcuts for methods with the same name as other `lodash` methods */
-	var nativeKeys = isNative(nativeKeys = Object.keys) && nativeKeys;
-
-	/**
-	 * Creates an array composed of the own enumerable property names of an object.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Objects
-	 * @param {Object} object The object to inspect.
-	 * @returns {Array} Returns an array of property names.
-	 * @example
-	 *
-	 * _.keys({ 'one': 1, 'two': 2, 'three': 3 });
-	 * // => ['one', 'two', 'three'] (property order is not guaranteed across environments)
-	 */
-	var keys = !nativeKeys ? shimKeys : function(object) {
-	  if (!isObject(object)) {
-	    return [];
-	  }
-	  return nativeKeys(object);
-	};
-
-	module.exports = keys;
-
-
-/***/ },
-/* 172 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
-	 * Build: `lodash modularize modern exports="npm" -o ./npm/`
-	 * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
-	 * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
-	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-	 * Available under MIT license <http://lodash.com/license>
-	 */
-
-	/** Used to determine if values are of the language type Object */
-	var objectTypes = {
-	  'boolean': false,
-	  'function': true,
-	  'object': true,
-	  'number': false,
-	  'string': false,
-	  'undefined': false
-	};
-
-	module.exports = objectTypes;
-
-
-/***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
-	 * Build: `lodash modularize modern exports="npm" -o ./npm/`
-	 * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
-	 * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
-	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-	 * Available under MIT license <http://lodash.com/license>
-	 */
-
-	/** Used to determine if values are of the language type Object */
-	var objectTypes = {
-	  'boolean': false,
-	  'function': true,
-	  'object': true,
-	  'number': false,
-	  'string': false,
-	  'undefined': false
-	};
-
-	module.exports = objectTypes;
-
 
 /***/ },
 /* 174 */
@@ -30150,47 +30175,7 @@
 	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <http://lodash.com/license>
 	 */
-
-	/** Used for native method references */
-	var objectProto = Object.prototype;
-
-	/** Used to resolve the internal [[Class]] of values */
-	var toString = objectProto.toString;
-
-	/** Used to detect if a method is native */
-	var reNative = RegExp('^' +
-	  String(toString)
-	    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-	    .replace(/toString| for [^\]]+/g, '.*?') + '$'
-	);
-
-	/**
-	 * Checks if `value` is a native function.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if the `value` is a native function, else `false`.
-	 */
-	function isNative(value) {
-	  return typeof value == 'function' && reNative.test(value);
-	}
-
-	module.exports = isNative;
-
-
-/***/ },
-/* 183 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
-	 * Build: `lodash modularize modern exports="npm" -o ./npm/`
-	 * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
-	 * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
-	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-	 * Available under MIT license <http://lodash.com/license>
-	 */
-	var objectTypes = __webpack_require__(172);
+	var objectTypes = __webpack_require__(171);
 
 	/**
 	 * Checks if `value` is the language type of Object.
@@ -30224,7 +30209,7 @@
 
 
 /***/ },
-/* 184 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -30235,7 +30220,7 @@
 	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <http://lodash.com/license>
 	 */
-	var objectTypes = __webpack_require__(172);
+	var objectTypes = __webpack_require__(171);
 
 	/** Used for native method references */
 	var objectProto = Object.prototype;
@@ -30265,6 +30250,46 @@
 	};
 
 	module.exports = shimKeys;
+
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+	 * Build: `lodash modularize modern exports="npm" -o ./npm/`
+	 * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+	 * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 * Available under MIT license <http://lodash.com/license>
+	 */
+
+	/** Used for native method references */
+	var objectProto = Object.prototype;
+
+	/** Used to resolve the internal [[Class]] of values */
+	var toString = objectProto.toString;
+
+	/** Used to detect if a method is native */
+	var reNative = RegExp('^' +
+	  String(toString)
+	    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+	    .replace(/toString| for [^\]]+/g, '.*?') + '$'
+	);
+
+	/**
+	 * Checks if `value` is a native function.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if the `value` is a native function, else `false`.
+	 */
+	function isNative(value) {
+	  return typeof value == 'function' && reNative.test(value);
+	}
+
+	module.exports = isNative;
 
 
 /***/ },
