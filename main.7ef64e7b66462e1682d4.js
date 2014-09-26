@@ -71,7 +71,8 @@
 	  return ReactRenderComponent(App({
 	    pitchClass: pitchClasses.value,
 	    onAnswer: answers.onNext.bind(answers),
-	    markCorrect: answers.value === lastPitchClass ? answers.value : null
+	    lastAnswer: answers.value,
+	    isLastAnswerCorrect: answers.value === lastPitchClass
 	  }), document.body);
 	}));
 	last2PitchClasses.subscribe((function($__0) {
@@ -100,11 +101,13 @@
 	    var $__0 = this.props,
 	        pitchClass = $__0.pitchClass,
 	        onAnswer = $__0.onAnswer,
-	        markCorrect = $__0.markCorrect,
+	        lastAnswer = $__0.lastAnswer,
+	        isLastAnswerCorrect = $__0.isLastAnswerCorrect,
 	        div = ReactDOM.div;
 	    return div({}, Staff({pitchClass: pitchClass}), AnswerEntry({
 	      onAnswer: onAnswer,
-	      markCorrect: markCorrect
+	      lastAnswer: lastAnswer,
+	      isLastAnswerCorrect: isLastAnswerCorrect
 	    }));
 	  }});
 
@@ -11933,7 +11936,8 @@
 	      onAnswer: (function(_) {
 	        return null;
 	      }),
-	      markCorrect: null
+	      lastAnswer: null,
+	      isLastAnswerCorrect: null
 	    };
 	  },
 	  handleClick: function(event) {
@@ -11941,13 +11945,16 @@
 	  },
 	  render: function() {
 	    var $__0 = this;
-	    var $__1 = ReactDOM,
-	        div = $__1.div,
-	        button = $__1.button;
+	    var $__1 = this.props,
+	        lastAnswer = $__1.lastAnswer,
+	        isLastAnswerCorrect = $__1.isLastAnswerCorrect,
+	        $__2 = ReactDOM,
+	        div = $__2.div,
+	        button = $__2.button;
 	    return div({}, pitchClassesSorted.map((function(pc) {
 	      var className = 'AnswerEntry-button';
-	      if ($__0.props.markCorrect === pc)
-	        className += ' AnswerEntry-button--correct';
+	      if (lastAnswer === pc && isLastAnswerCorrect != null)
+	        className += isLastAnswerCorrect ? ' AnswerEntry-button--correct' : ' AnswerEntry-button--incorrect';
 	      return button({
 	        className: className,
 	        onClick: $__0.handleClick
@@ -20514,7 +20521,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(123)();
-	exports.push([module.id, ".AnswerEntry-button {\n  width: 25%;\n  height: 50px;\n  font-size: 20px;\n}\n\n.AnswerEntry-button--correct {\n  background-color: green;\n  color: white;\n}\n", ""]);
+	exports.push([module.id, ".AnswerEntry-button {\n  width: 25%;\n  height: 50px;\n  font-size: 20px;\n}\n\n.AnswerEntry-button--correct {\n  background-color: green;\n  color: white;\n}\n\n.AnswerEntry-button--incorrect {\n  background-color: red;\n  color: white;\n}\n", ""]);
 
 /***/ },
 /* 83 */
