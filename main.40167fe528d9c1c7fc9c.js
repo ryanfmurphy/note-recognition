@@ -20530,7 +20530,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(123)();
-	exports.push([module.id, ".GuessEntry-button {\n  width: 25%;\n  height: 50px;\n  font-size: 20px;\n}\n\n.GuessEntry-button--correct {\n  background-color: green;\n  color: white;\n}\n\n.GuessEntry-button--incorrect {\n  background-color: red;\n  color: white;\n}\n", ""]);
+	exports.push([module.id, ".GuessEntry-button {\n  width: 25%;\n  height: 50px;\n  font-size: 20px;\n}\n\n.GuessEntry-button--correct {\n  background-color: green;\n  color: white;\n}\n\n.GuessEntry-button--incorrect {\n  background-color: #f00000;\n  color: white;\n}\n", ""]);
 
 /***/ },
 /* 83 */
