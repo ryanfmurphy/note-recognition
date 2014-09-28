@@ -53,31 +53,35 @@
 	    without = __webpack_require__(5);
 	var App = __webpack_require__(1),
 	    Staff = __webpack_require__(2);
-	var notes = new Rx.BehaviorSubject,
-	    guesses,
-	    correctGuesses,
-	    otherNotes,
-	    renderApp = (function() {
-	      ReactRenderComponent(App({
-	        note: notes.value,
-	        onGuess: guesses.onNext.bind(guesses),
-	        lastGuess: guesses.value,
-	        isLastGuessCorrect: guesses.value === notes.value
-	      }), document.body);
-	    });
+	var notes = new Rx.BehaviorSubject;
 	notes.subscribe((function(_) {
-	  otherNotes = without(Staff.notes, notes.value);
-	  guesses = new Rx.BehaviorSubject;
-	  correctGuesses = guesses.skip(1).filter((function(g) {
-	    return g === notes.value;
-	  }));
+	  var guesses = new Rx.BehaviorSubject,
+	      correctGuesses = guesses.skip(1).filter((function(g) {
+	        return g === notes.value;
+	      }));
+	  var renderApp = (function() {
+	    var note = notes.value,
+	        guess = guesses.value,
+	        isGuessCorrect = guess === note,
+	        onGuess = (function(guess) {
+	          if (!isGuessCorrect)
+	            guesses.onNext(guess);
+	        });
+	    ReactRenderComponent(App({
+	      note: note,
+	      guess: guess,
+	      isGuessCorrect: isGuessCorrect,
+	      onGuess: onGuess
+	    }), document.body);
+	  });
+	  renderApp();
+	  guesses.subscribe(renderApp, null, renderApp);
 	  correctGuesses.subscribe((function(_) {
-	    setTimeout((function() {
+	    return setTimeout((function() {
 	      guesses.onCompleted();
-	      notes.onNext(sample(otherNotes));
+	      notes.onNext(sample(without(Staff.notes, notes.value)));
 	    }), 1000);
 	  }));
-	  notes.merge(guesses).subscribe(renderApp, null, renderApp);
 	}));
 	notes.onNext(sample(Staff.notes));
 
@@ -95,14 +99,14 @@
 	module.exports = ReactCreateClass({render: function() {
 	    var $__0 = this.props,
 	        note = $__0.note,
+	        guess = $__0.guess,
 	        onGuess = $__0.onGuess,
-	        lastGuess = $__0.lastGuess,
-	        isLastGuessCorrect = $__0.isLastGuessCorrect,
+	        isGuessCorrect = $__0.isGuessCorrect,
 	        div = ReactDOM.div;
 	    return div({}, Staff({note: note}), GuessEntry({
+	      guess: guess,
 	      onGuess: onGuess,
-	      lastGuess: lastGuess,
-	      isLastGuessCorrect: isLastGuessCorrect
+	      isGuessCorrect: isGuessCorrect
 	    }));
 	  }});
 
@@ -11931,8 +11935,8 @@
 	      onGuess: (function(_) {
 	        return null;
 	      }),
-	      lastGuess: null,
-	      isLastGuessCorrect: null
+	      guess: null,
+	      isGuessCorrect: null
 	    };
 	  },
 	  onClick: function(event) {
@@ -11940,16 +11944,16 @@
 	  },
 	  render: function() {
 	    var $__0 = this.props,
-	        lastGuess = $__0.lastGuess,
-	        isLastGuessCorrect = $__0.isLastGuessCorrect,
+	        guess = $__0.guess,
+	        isGuessCorrect = $__0.isGuessCorrect,
 	        onClick = (this).onClick,
 	        $__2 = ReactDOM,
 	        div = $__2.div,
 	        button = $__2.button;
 	    return div({}, sortedNotes.map((function(note) {
 	      var className = 'GuessEntry-button';
-	      if (lastGuess === note && isLastGuessCorrect != null)
-	        className += isLastGuessCorrect ? ' GuessEntry-button--correct' : ' GuessEntry-button--incorrect';
+	      if (guess === note && isGuessCorrect != null)
+	        className += isGuessCorrect ? ' GuessEntry-button--correct' : ' GuessEntry-button--incorrect';
 	      return button({
 	        className: className,
 	        onClick: onClick
