@@ -11949,15 +11949,25 @@
 	        onClick = (this).onClick,
 	        $__2 = ReactDOM,
 	        div = $__2.div,
-	        button = $__2.button;
+	        button = $__2.button,
+	        checkMark = '\u2714',
+	        xMark = '\u2717';
 	    return div({}, sortedNotes.map((function(note) {
-	      var className = 'GuessEntry-button';
-	      if (guess === note && isGuessCorrect != null)
-	        className += isGuessCorrect ? ' GuessEntry-button--correct' : ' GuessEntry-button--incorrect';
+	      var className = 'GuessEntry-button',
+	          text = note;
+	      if (guess === note && isGuessCorrect != null) {
+	        if (isGuessCorrect) {
+	          className += ' GuessEntry-button--correct';
+	          text = checkMark;
+	        } else {
+	          className += ' GuessEntry-button--incorrect';
+	          text = xMark;
+	        }
+	      }
 	      return button({
 	        className: className,
 	        onClick: onClick
-	      }, note);
+	      }, text);
 	    })));
 	  }
 	});
