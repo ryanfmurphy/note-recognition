@@ -11957,18 +11957,17 @@
 	        $__2 = ReactDOM,
 	        div = $__2.div,
 	        button = $__2.button,
-	        checkMark = '\u2714',
-	        xMark = '\u2717';
+	        span = $__2.span;
 	    return div({className: 'Grid--withGutter Grid--withVerticalGutter'}, sortedNotes.map((function(note) {
 	      var className = 'Button Button--default' + ' GuessEntry-button u-sizeFillAlt',
 	          text = note;
 	      if (guess === note && isGuessCorrect != null) {
 	        if (isGuessCorrect) {
 	          className += ' GuessEntry-button--correct';
-	          text = checkMark;
+	          text = span({className: 'fa fa-check'});
 	        } else {
 	          className += ' GuessEntry-button--incorrect';
-	          text = xMark;
+	          text = span({className: 'fa fa-times'});
 	        }
 	      }
 	      return div({className: 'Grid-cell u-size1of4'}, button({
