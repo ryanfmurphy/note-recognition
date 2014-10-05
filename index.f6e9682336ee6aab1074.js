@@ -50,8 +50,8 @@
 	    Rx = __webpack_require__(4),
 	    sample = __webpack_require__(5),
 	    without = __webpack_require__(6);
-	var App = __webpack_require__(1),
-	    Staff = __webpack_require__(2);
+	var App = __webpack_require__(2),
+	    Staff = __webpack_require__(1);
 	var notes = new Rx.BehaviorSubject;
 	notes.subscribe((function(_) {
 	  var guesses = new Rx.BehaviorSubject,
@@ -91,37 +91,10 @@
 
 	"use strict";
 	'use strict';
-	var React = __webpack_require__(3);
-	__webpack_require__(15);
-	__webpack_require__(11);
-	__webpack_require__(13);
-	var Staff = __webpack_require__(2),
-	    GuessEntry = __webpack_require__(7);
-	module.exports = React.createClass({render: function() {
-	    var $__0 = this.props,
-	        note = $__0.note,
-	        guess = $__0.guess,
-	        onGuess = $__0.onGuess,
-	        isGuessCorrect = $__0.isGuessCorrect,
-	        div = React.DOM.div;
-	    return div({className: 'App Grid-cell--center'}, Staff({note: note}), GuessEntry({
-	      guess: guess,
-	      onGuess: onGuess,
-	      isGuessCorrect: isGuessCorrect
-	    }));
-	  }});
-
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	'use strict';
 	var React = __webpack_require__(3),
 	    range = __webpack_require__(10);
-	var TrebleClef = __webpack_require__(8),
-	    WholeNote = __webpack_require__(9);
+	var TrebleClef = __webpack_require__(7),
+	    WholeNote = __webpack_require__(8);
 	var notes = ['E', 'F', 'G', 'A', 'B', 'C', 'D'];
 	var Staff = React.createClass({
 	  getDefaultProps: function() {
@@ -151,6 +124,33 @@
 	});
 	Staff.notes = notes;
 	module.exports = Staff;
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	'use strict';
+	var React = __webpack_require__(3);
+	__webpack_require__(15);
+	__webpack_require__(11);
+	__webpack_require__(13);
+	var Staff = __webpack_require__(1),
+	    GuessEntry = __webpack_require__(9);
+	module.exports = React.createClass({render: function() {
+	    var $__0 = this.props,
+	        note = $__0.note,
+	        guess = $__0.guess,
+	        onGuess = $__0.onGuess,
+	        isGuessCorrect = $__0.isGuessCorrect,
+	        div = React.DOM.div;
+	    return div({className: 'App Grid-cell--center'}, Staff({note: note}), GuessEntry({
+	      guess: guess,
+	      onGuess: onGuess,
+	      isGuessCorrect: isGuessCorrect
+	    }));
+	  }});
 
 
 /***/ },
@@ -287,12 +287,68 @@
 	"use strict";
 	'use strict';
 	var React = __webpack_require__(3);
+	module.exports = React.createClass({
+	  getDefaultProps: function() {
+	    return {scale: 1};
+	  },
+	  render: function() {
+	    var $__0 = React.DOM,
+	        svg = $__0.svg,
+	        path = $__0.path,
+	        width = 200 * this.props.scale,
+	        height = 450 * this.props.scale;
+	    return svg({
+	      width: width,
+	      height: height,
+	      viewBox: '0 0 1200 1200'
+	    }, path({d: 'M 592.10873,1275.9669 C 461.75172,1268.3902 328.65904,1186.6265 249.0601,1092.783 C 156.77394,983.97782 118.72592,836.04683 128.47199,714.56357 C 157.10277,357.61288 545.27831,146.63848 688.97108,-9.280262 C 785.15294,-113.64625 805.31643,-164.52308 826.79977,-218.19949 C 868.39181,-322.09965 875.09166,-443.8341 792.63375,-452.92251 C 713.90712,-461.59988 649.13737,-337.79201 620.20973,-253.17845 C 594.19587,-177.07331 576.90507,-100.71696 592.5563,13.979673 C 599.58954,65.50958 793.18636,1503.9125 796.45179,1526.2088 C 829.05589,1749.0255 701.63092,1841.2249 571.55248,1857.6251 C 290.65671,1893.038 200.52617,1607.5843 326.4212,1499.1719 C 423.34291,1415.7001 564.35026,1487.3615 556.73245,1624.5919 C 549.98693,1746.1391 430.80546,1749.7197 400.35244,1746.9429 C 447.10065,1830.7846 799.52998,1874.5871 745.41513,1495.7923 C 737.811,1442.5634 558.91549,90.842953 554.53112,60.595454 C 521.71238,-165.84753 516.71147,-345.08557 634.69182,-554.25141 C 678.24767,-631.46637 747.0821,-681.3156 780.87362,-674.7893 C 788.29962,-673.35526 795.69824,-670.62872 801.57144,-664.56827 C 892.07191,-571.31845 919.83494,-364.53202 909.9199,-245.74332 C 899.76736,-124.11391 894.1088,1.7993735 773.16902,148.63428 C 726.36601,205.45738 583.54553,330.63538 501.65851,402.55255 C 386.60107,503.59831 303.14756,591.85179 257.99323,698.31862 C 207.24886,817.97506 198.65826,968.6006 313.27268,1102.2505 C 379.20247,1177.7619 488.59222,1231.3424 580.65459,1232.4842 C 836.63719,1235.6628 911.39048,1109.4801 913.77904,966.58197 C 917.71126,731.28351 633.64596,642.32214 516.85762,804.10953 C 449.14212,897.92109 478.90552,996.66049 524.38411,1043.6371 C 539.99424,1059.7587 557.43121,1072.0395 573.92734,1078.8855 C 579.9056,1081.3654 593.96751,1087.9054 589.97593,1097.4779 C 586.6557,1105.4428 580.20702,1105.8904 574.33381,1105.1871 C 500.68573,1096.3544 419.13667,1025.958 399.0828,904.87212 C 369.86288,728.38801 525.6035,519.0349 747.9133,553.274 C 893.45572,575.68903 1028.5853,700.92182 1016.7338,934.11946 C 1006.5722,1133.9822 840.87996,1290.4262 592.10873,1275.9669 z'}));
+	  }
+	});
+
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	'use strict';
+	var React = __webpack_require__(3);
+	module.exports = React.createClass({
+	  getDefaultProps: function() {
+	    return {staffPosition: 4};
+	  },
+	  render: function() {
+	    var $__0 = React.DOM,
+	        svg = $__0.svg,
+	        g = $__0.g,
+	        path = $__0.path,
+	        y = 28 - (5 * this.props.staffPosition);
+	    return svg({
+	      y: y,
+	      width: 600,
+	      height: 299.13995,
+	      viewBox: '0 0 2000 2000'
+	    }, g({transform: 'matrix(2.9945185,0,0,2.9945185,-405.68296,-117.96426)'}, path({
+	      d: 'm 225.36285,99.817998 c -5.49692,-1.69186 -9.83405,-6.28944 -9.83405,-10.4246 0,-11.704229 25.13958,-16.335904 35.52156,-6.544434 11.22686,10.588284 -7.09488,22.691526 -25.68751,16.969034 z m 16.76819,-2.9403 c 3.05854,-4.66792 0.13433,-13.916407 -5.16332,-16.330174 -7.77978,-3.544708 -12.54851,2.495846 -9.30827,11.790804 2.2412,6.42911 11.35935,9.289252 14.47159,4.53937 z',
+	      fill: '#000000'
+	    })));
+	  }
+	});
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	'use strict';
+	var React = __webpack_require__(3);
 	__webpack_require__(15);
 	__webpack_require__(28);
 	__webpack_require__(30);
 	__webpack_require__(11);
-	__webpack_require__(17);
-	var Staff = __webpack_require__(2);
+	__webpack_require__(18);
+	var Staff = __webpack_require__(1);
 	var sortedNotes = Staff.notes.slice(0).sort();
 	module.exports = React.createClass({
 	  getDefaultProps: function() {
@@ -332,62 +388,6 @@
 	        className: className,
 	        onClick: onClick
 	      }, text));
-	    })));
-	  }
-	});
-
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	'use strict';
-	var React = __webpack_require__(3);
-	module.exports = React.createClass({
-	  getDefaultProps: function() {
-	    return {scale: 1};
-	  },
-	  render: function() {
-	    var $__0 = React.DOM,
-	        svg = $__0.svg,
-	        path = $__0.path,
-	        width = 200 * this.props.scale,
-	        height = 450 * this.props.scale;
-	    return svg({
-	      width: width,
-	      height: height,
-	      viewBox: '0 0 1200 1200'
-	    }, path({d: 'M 592.10873,1275.9669 C 461.75172,1268.3902 328.65904,1186.6265 249.0601,1092.783 C 156.77394,983.97782 118.72592,836.04683 128.47199,714.56357 C 157.10277,357.61288 545.27831,146.63848 688.97108,-9.280262 C 785.15294,-113.64625 805.31643,-164.52308 826.79977,-218.19949 C 868.39181,-322.09965 875.09166,-443.8341 792.63375,-452.92251 C 713.90712,-461.59988 649.13737,-337.79201 620.20973,-253.17845 C 594.19587,-177.07331 576.90507,-100.71696 592.5563,13.979673 C 599.58954,65.50958 793.18636,1503.9125 796.45179,1526.2088 C 829.05589,1749.0255 701.63092,1841.2249 571.55248,1857.6251 C 290.65671,1893.038 200.52617,1607.5843 326.4212,1499.1719 C 423.34291,1415.7001 564.35026,1487.3615 556.73245,1624.5919 C 549.98693,1746.1391 430.80546,1749.7197 400.35244,1746.9429 C 447.10065,1830.7846 799.52998,1874.5871 745.41513,1495.7923 C 737.811,1442.5634 558.91549,90.842953 554.53112,60.595454 C 521.71238,-165.84753 516.71147,-345.08557 634.69182,-554.25141 C 678.24767,-631.46637 747.0821,-681.3156 780.87362,-674.7893 C 788.29962,-673.35526 795.69824,-670.62872 801.57144,-664.56827 C 892.07191,-571.31845 919.83494,-364.53202 909.9199,-245.74332 C 899.76736,-124.11391 894.1088,1.7993735 773.16902,148.63428 C 726.36601,205.45738 583.54553,330.63538 501.65851,402.55255 C 386.60107,503.59831 303.14756,591.85179 257.99323,698.31862 C 207.24886,817.97506 198.65826,968.6006 313.27268,1102.2505 C 379.20247,1177.7619 488.59222,1231.3424 580.65459,1232.4842 C 836.63719,1235.6628 911.39048,1109.4801 913.77904,966.58197 C 917.71126,731.28351 633.64596,642.32214 516.85762,804.10953 C 449.14212,897.92109 478.90552,996.66049 524.38411,1043.6371 C 539.99424,1059.7587 557.43121,1072.0395 573.92734,1078.8855 C 579.9056,1081.3654 593.96751,1087.9054 589.97593,1097.4779 C 586.6557,1105.4428 580.20702,1105.8904 574.33381,1105.1871 C 500.68573,1096.3544 419.13667,1025.958 399.0828,904.87212 C 369.86288,728.38801 525.6035,519.0349 747.9133,553.274 C 893.45572,575.68903 1028.5853,700.92182 1016.7338,934.11946 C 1006.5722,1133.9822 840.87996,1290.4262 592.10873,1275.9669 z'}));
-	  }
-	});
-
-
-/***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	'use strict';
-	var React = __webpack_require__(3);
-	module.exports = React.createClass({
-	  getDefaultProps: function() {
-	    return {staffPosition: 4};
-	  },
-	  render: function() {
-	    var $__0 = React.DOM,
-	        svg = $__0.svg,
-	        g = $__0.g,
-	        path = $__0.path,
-	        y = 28 - (5 * this.props.staffPosition);
-	    return svg({
-	      y: y,
-	      width: 600,
-	      height: 299.13995,
-	      viewBox: '0 0 2000 2000'
-	    }, g({transform: 'matrix(2.9945185,0,0,2.9945185,-405.68296,-117.96426)'}, path({
-	      d: 'm 225.36285,99.817998 c -5.49692,-1.69186 -9.83405,-6.28944 -9.83405,-10.4246 0,-11.704229 25.13958,-16.335904 35.52156,-6.544434 11.22686,10.588284 -7.09488,22.691526 -25.68751,16.969034 z m 16.76819,-2.9403 c 3.05854,-4.66792 0.13433,-13.916407 -5.16332,-16.330174 -7.77978,-3.544708 -12.54851,2.495846 -9.30827,11.790804 2.2412,6.42911 11.35935,9.289252 14.47159,4.53937 z',
-	      fill: '#000000'
 	    })));
 	  }
 	});
@@ -478,7 +478,7 @@
 	var content = __webpack_require__(12);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
+	var update = __webpack_require__(17)(content);
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
@@ -510,12 +510,12 @@
 	var content = __webpack_require__(14);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
+	var update = __webpack_require__(17)(content);
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/app.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/app.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/app/index.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/app/index.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -539,7 +539,7 @@
 	var content = __webpack_require__(16);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
+	var update = __webpack_require__(17)(content);
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
@@ -561,35 +561,6 @@
 
 /***/ },
 /* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(18);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/guess-entry.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/guess-entry.css");
-			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = ".GuessEntry-button {\n  height: 50px;\n  font-size: 20px;\n}\n\n.GuessEntry-button--correct {\n  background-color: green;\n  color: white;\n}\n\n.GuessEntry-button--incorrect {\n  background-color: #f00000;\n  color: white;\n}";
-
-/***/ },
-/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -709,6 +680,35 @@
 
 	}
 
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(19);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(17)(content);
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/guess-entry/index.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/guess-entry/index.css");
+			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = ".GuessEntry-button {\n  height: 50px;\n  font-size: 20px;\n}\n\n.GuessEntry-button--correct {\n  background-color: green;\n  color: white;\n}\n\n.GuessEntry-button--incorrect {\n  background-color: #f00000;\n  color: white;\n}";
 
 /***/ },
 /* 20 */
@@ -886,7 +886,7 @@
 	 * Available under MIT license <http://lodash.com/license>
 	 */
 	var baseRandom = __webpack_require__(22),
-	    forEach = __webpack_require__(46);
+	    forEach = __webpack_require__(36);
 
 	/**
 	 * Creates an array of shuffled values, using a version of the Fisher-Yates
@@ -930,7 +930,7 @@
 	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <http://lodash.com/license>
 	 */
-	var keys = __webpack_require__(47);
+	var keys = __webpack_require__(37);
 
 	/**
 	 * Creates an array composed of the own enumerable property values of `object`.
@@ -972,11 +972,11 @@
 	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <http://lodash.com/license>
 	 */
-	var baseIndexOf = __webpack_require__(48),
-	    cacheIndexOf = __webpack_require__(49),
-	    createCache = __webpack_require__(50),
-	    largeArraySize = __webpack_require__(51),
-	    releaseObject = __webpack_require__(52);
+	var baseIndexOf = __webpack_require__(38),
+	    cacheIndexOf = __webpack_require__(39),
+	    createCache = __webpack_require__(40),
+	    largeArraySize = __webpack_require__(41),
+	    releaseObject = __webpack_require__(42);
 
 	/**
 	 * The base implementation of `_.difference` that accepts a single array
@@ -1072,7 +1072,7 @@
 	var content = __webpack_require__(29);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
+	var update = __webpack_require__(17)(content);
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
@@ -1089,7 +1089,7 @@
 /* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(36);
+	__webpack_require__(43);
 	module.exports = "";
 
 /***/ },
@@ -1102,7 +1102,7 @@
 	var content = __webpack_require__(31);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
+	var update = __webpack_require__(17)(content);
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
@@ -1119,10 +1119,10 @@
 /* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(38);
-	__webpack_require__(40);
-	__webpack_require__(42);
-	__webpack_require__(44);
+	__webpack_require__(45);
+	__webpack_require__(47);
+	__webpack_require__(49);
+	__webpack_require__(51);
 	module.exports = "";
 
 /***/ },
@@ -1135,7 +1135,7 @@
 	var content = __webpack_require__(33);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
+	var update = __webpack_require__(17)(content);
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
@@ -1164,7 +1164,7 @@
 	var content = __webpack_require__(35);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
+	var update = __webpack_require__(17)(content);
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
@@ -1187,151 +1187,6 @@
 
 /***/ },
 /* 36 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(37);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/lib/button.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/lib/button.css");
-			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 37 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = "/** @define Button; use strict */\n\n\n\n/**\n * The button classes are best applied to links, buttons, and submit inputs.\n * These components can be used in forms, as calls to action, or as part of the\n * general UI of the site/app.\n */\n\n/**\n * 1. Corrects inability to style clickable `input` types in iOS.\n * 2. Normalize `box-sizing` across all elements that this component could be\n *    applied to.\n * 3. Inherit text color from ancestor.\n * 4. Inherit font styles from ancestor.\n * 5. Normalize `line-height`. For `input`, it can't be changed from `normal` in Firefox 4+.\n * 6. Prevent button text from being selectable.\n * 7. Make sure `input` will wrap text across multiple lines.\n */\n\n.Button {\n  -webkit-appearance: none;\n  /* 1 */\n  background: transparent;\n  border-color: currentcolor;\n  border-style: solid;\n  border-width: 1px;\n  box-sizing: border-box;\n  /* 2 */\n  color: inherit;\n  /* 3 */\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  /* 4 */\n  line-height: normal;\n  /* 5 */\n  margin: 0;\n  padding: 0.4em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  user-select: none;\n  /* 6 */\n  white-space: normal;\n  /* 7 */\n}\n\n/**\n * Remove excess padding and border in Firefox 4+\n */\n\n.Button::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n\n/**\n * Work around a Firefox/IE bug where the transparent `button` background\n * results in a loss of the default `button` focus styles.\n */\n\n.Button:focus {\n  outline: 1px dotted;\n  outline: 5px auto -webkit-focus-ring-color;\n}\n\n/**\n * UI states\n */\n\n.Button:hover,\n.Button:focus,\n.Button:active {\n  text-decoration: none;\n}\n\n.Button:disabled,\n.Button.is-disabled {\n  cursor: default;\n  opacity: 0.6;\n}";
-
-/***/ },
-/* 38 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(39);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size.css");
-			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 39 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = "/**\n * Sizing utilities\n */\n\n/* Intrinsic widths\n   ========================================================================== */\n\n/**\n * Make an element shrink wrap its content.\n */\n\n.u-sizeFit,\n.u-sizeFitAlt {\n  display: block !important;\n  float: left !important;\n  width: auto !important;\n}\n\n.u-sizeFitAlt {\n  float: right !important;\n}\n\n/**\n * Make an element fill the remaining space.\n * N.B. This will hide overflow.\n */\n\n.u-sizeFill {\n  display: block !important;\n  overflow: hidden !important;\n  width: auto !important;\n}\n\n/**\n * An alternative method to make an element fill the remaining space.\n * N.B. Do not use if child elements might be wider than the remaining space.\n * In Chrome, Safari, and Firefox it results in undesired layout.\n */\n\n.u-sizeFillAlt {\n  display: table-cell !important;\n  max-width: 100% !important;\n  width: 10000px !important;\n}\n\n/**\n * Make an element the width of its parent.\n */\n\n.u-sizeFull {\n  box-sizing: border-box !important;\n  display: block !important;\n  width: 100% !important;\n}\n\n/* Proportional widths\n   ========================================================================== */\n\n/**\n * Specify the proportional width of an object.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 part\n */\n\n.u-size1of12 {\n  width: 8.333333333333332% !important;\n}\n\n.u-size1of10 {\n  width: 10% !important;\n}\n\n.u-size1of8 {\n  width: 12.5% !important;\n}\n\n.u-size1of6,\n.u-size2of12 {\n  width: 16.666666666666664% !important;\n}\n\n.u-size1of5,\n.u-size2of10 {\n  width: 20% !important;\n}\n\n.u-size1of4,\n.u-size2of8,\n.u-size3of12 {\n  width: 25% !important;\n}\n\n.u-size3of10 {\n  width: 30% !important;\n}\n\n.u-size1of3,\n.u-size2of6,\n.u-size4of12 {\n  width: 33.33333333333333% !important;\n}\n\n.u-size3of8 {\n  width: 37.5% !important;\n}\n\n.u-size2of5,\n.u-size4of10 {\n  width: 40% !important;\n}\n\n.u-size5of12 {\n  width: 41.66666666666667% !important;\n}\n\n.u-size1of2,\n.u-size2of4,\n.u-size3of6,\n.u-size4of8,\n.u-size5of10,\n.u-size6of12 {\n  width: 50% !important;\n}\n\n.u-size7of12 {\n  width: 58.333333333333336% !important;\n}\n\n.u-size3of5,\n.u-size6of10 {\n  width: 60% !important;\n}\n\n.u-size5of8 {\n  width: 62.5% !important;\n}\n\n.u-size2of3,\n.u-size4of6,\n.u-size8of12 {\n  width: 66.66666666666666% !important;\n}\n\n.u-size7of10 {\n  width: 70% !important;\n}\n\n.u-size3of4,\n.u-size6of8,\n.u-size9of12 {\n  width: 75% !important;\n}\n\n.u-size4of5,\n.u-size8of10 {\n  width: 80% !important;\n}\n\n.u-size5of6,\n.u-size10of12 {\n  width: 83.33333333333334% !important;\n}\n\n.u-size7of8 {\n  width: 87.5% !important;\n}\n\n.u-size9of10 {\n  width: 90% !important;\n}\n\n.u-size11of12 {\n  width: 91.66666666666666% !important;\n}";
-
-/***/ },
-/* 40 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(41);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-sm.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-sm.css");
-			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 41 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = "/**\n * Size: breakpoint 1 (small)\n */";
-
-/***/ },
-/* 42 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(43);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-md.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-md.css");
-			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 43 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = "/**\n * Size: breakpoint 2 (medium)\n */";
-
-/***/ },
-/* 44 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(45);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-lg.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-lg.css");
-			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 45 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = "/**\n * Size: breakpoint 3 (large)\n */";
-
-/***/ },
-/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1392,7 +1247,7 @@
 
 
 /***/ },
-/* 47 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1434,7 +1289,7 @@
 
 
 /***/ },
-/* 48 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1472,7 +1327,7 @@
 
 
 /***/ },
-/* 49 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1483,7 +1338,7 @@
 	 * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <http://lodash.com/license>
 	 */
-	var baseIndexOf = __webpack_require__(48),
+	var baseIndexOf = __webpack_require__(38),
 	    keyPrefix = __webpack_require__(62);
 
 	/**
@@ -1517,7 +1372,7 @@
 
 
 /***/ },
-/* 50 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1530,7 +1385,7 @@
 	 */
 	var cachePush = __webpack_require__(63),
 	    getObject = __webpack_require__(64),
-	    releaseObject = __webpack_require__(52);
+	    releaseObject = __webpack_require__(42);
 
 	/**
 	 * Creates a cache object to optimize linear searches of large arrays.
@@ -1568,7 +1423,7 @@
 
 
 /***/ },
-/* 51 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1587,7 +1442,7 @@
 
 
 /***/ },
-/* 52 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1622,6 +1477,151 @@
 
 
 /***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(44);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(17)(content);
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/lib/button.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/lib/button.css");
+			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = "/** @define Button; use strict */\n\n\n\n/**\n * The button classes are best applied to links, buttons, and submit inputs.\n * These components can be used in forms, as calls to action, or as part of the\n * general UI of the site/app.\n */\n\n/**\n * 1. Corrects inability to style clickable `input` types in iOS.\n * 2. Normalize `box-sizing` across all elements that this component could be\n *    applied to.\n * 3. Inherit text color from ancestor.\n * 4. Inherit font styles from ancestor.\n * 5. Normalize `line-height`. For `input`, it can't be changed from `normal` in Firefox 4+.\n * 6. Prevent button text from being selectable.\n * 7. Make sure `input` will wrap text across multiple lines.\n */\n\n.Button {\n  -webkit-appearance: none;\n  /* 1 */\n  background: transparent;\n  border-color: currentcolor;\n  border-style: solid;\n  border-width: 1px;\n  box-sizing: border-box;\n  /* 2 */\n  color: inherit;\n  /* 3 */\n  cursor: pointer;\n  display: inline-block;\n  font: inherit;\n  /* 4 */\n  line-height: normal;\n  /* 5 */\n  margin: 0;\n  padding: 0.4em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  user-select: none;\n  /* 6 */\n  white-space: normal;\n  /* 7 */\n}\n\n/**\n * Remove excess padding and border in Firefox 4+\n */\n\n.Button::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n\n/**\n * Work around a Firefox/IE bug where the transparent `button` background\n * results in a loss of the default `button` focus styles.\n */\n\n.Button:focus {\n  outline: 1px dotted;\n  outline: 5px auto -webkit-focus-ring-color;\n}\n\n/**\n * UI states\n */\n\n.Button:hover,\n.Button:focus,\n.Button:active {\n  text-decoration: none;\n}\n\n.Button:disabled,\n.Button.is-disabled {\n  cursor: default;\n  opacity: 0.6;\n}";
+
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(46);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(17)(content);
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size.css");
+			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = "/**\n * Sizing utilities\n */\n\n/* Intrinsic widths\n   ========================================================================== */\n\n/**\n * Make an element shrink wrap its content.\n */\n\n.u-sizeFit,\n.u-sizeFitAlt {\n  display: block !important;\n  float: left !important;\n  width: auto !important;\n}\n\n.u-sizeFitAlt {\n  float: right !important;\n}\n\n/**\n * Make an element fill the remaining space.\n * N.B. This will hide overflow.\n */\n\n.u-sizeFill {\n  display: block !important;\n  overflow: hidden !important;\n  width: auto !important;\n}\n\n/**\n * An alternative method to make an element fill the remaining space.\n * N.B. Do not use if child elements might be wider than the remaining space.\n * In Chrome, Safari, and Firefox it results in undesired layout.\n */\n\n.u-sizeFillAlt {\n  display: table-cell !important;\n  max-width: 100% !important;\n  width: 10000px !important;\n}\n\n/**\n * Make an element the width of its parent.\n */\n\n.u-sizeFull {\n  box-sizing: border-box !important;\n  display: block !important;\n  width: 100% !important;\n}\n\n/* Proportional widths\n   ========================================================================== */\n\n/**\n * Specify the proportional width of an object.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 part\n */\n\n.u-size1of12 {\n  width: 8.333333333333332% !important;\n}\n\n.u-size1of10 {\n  width: 10% !important;\n}\n\n.u-size1of8 {\n  width: 12.5% !important;\n}\n\n.u-size1of6,\n.u-size2of12 {\n  width: 16.666666666666664% !important;\n}\n\n.u-size1of5,\n.u-size2of10 {\n  width: 20% !important;\n}\n\n.u-size1of4,\n.u-size2of8,\n.u-size3of12 {\n  width: 25% !important;\n}\n\n.u-size3of10 {\n  width: 30% !important;\n}\n\n.u-size1of3,\n.u-size2of6,\n.u-size4of12 {\n  width: 33.33333333333333% !important;\n}\n\n.u-size3of8 {\n  width: 37.5% !important;\n}\n\n.u-size2of5,\n.u-size4of10 {\n  width: 40% !important;\n}\n\n.u-size5of12 {\n  width: 41.66666666666667% !important;\n}\n\n.u-size1of2,\n.u-size2of4,\n.u-size3of6,\n.u-size4of8,\n.u-size5of10,\n.u-size6of12 {\n  width: 50% !important;\n}\n\n.u-size7of12 {\n  width: 58.333333333333336% !important;\n}\n\n.u-size3of5,\n.u-size6of10 {\n  width: 60% !important;\n}\n\n.u-size5of8 {\n  width: 62.5% !important;\n}\n\n.u-size2of3,\n.u-size4of6,\n.u-size8of12 {\n  width: 66.66666666666666% !important;\n}\n\n.u-size7of10 {\n  width: 70% !important;\n}\n\n.u-size3of4,\n.u-size6of8,\n.u-size9of12 {\n  width: 75% !important;\n}\n\n.u-size4of5,\n.u-size8of10 {\n  width: 80% !important;\n}\n\n.u-size5of6,\n.u-size10of12 {\n  width: 83.33333333333334% !important;\n}\n\n.u-size7of8 {\n  width: 87.5% !important;\n}\n\n.u-size9of10 {\n  width: 90% !important;\n}\n\n.u-size11of12 {\n  width: 91.66666666666666% !important;\n}";
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(48);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(17)(content);
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-sm.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-sm.css");
+			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 48 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = "/**\n * Size: breakpoint 1 (small)\n */";
+
+/***/ },
+/* 49 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(50);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(17)(content);
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-md.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-md.css");
+			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = "/**\n * Size: breakpoint 2 (medium)\n */";
+
+/***/ },
+/* 51 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(52);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(17)(content);
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-lg.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-lg.css");
+			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = "/**\n * Size: breakpoint 3 (large)\n */";
+
+/***/ },
 /* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1631,7 +1631,7 @@
 	var content = __webpack_require__(54);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
+	var update = __webpack_require__(17)(content);
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
@@ -1660,7 +1660,7 @@
 	var content = __webpack_require__(56);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content);
+	var update = __webpack_require__(17)(content);
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
