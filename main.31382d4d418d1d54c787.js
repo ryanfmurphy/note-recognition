@@ -482,8 +482,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/src/index.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/src/index.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/index.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/index.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -514,8 +514,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/src/app.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/src/app.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/app.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/app.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -543,8 +543,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-grid/index.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-grid/index.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-grid/index.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-grid/index.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -573,8 +573,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/src/guess-entry.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/src/guess-entry.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/guess-entry.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/src/guess-entry.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1076,8 +1076,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/index.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/index.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/index.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/index.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1106,8 +1106,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/index.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/index.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/index.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/index.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1139,8 +1139,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-grid/lib/grid.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-grid/lib/grid.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-grid/lib/grid.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-grid/lib/grid.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1168,8 +1168,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/index.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/index.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/index.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/index.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1199,8 +1199,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/lib/button.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/lib/button.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/lib/button.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-components-button/lib/button.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1228,8 +1228,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1257,8 +1257,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-sm.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-sm.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-sm.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-sm.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1286,8 +1286,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-md.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-md.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-md.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-md.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1315,8 +1315,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-lg.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-lg.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-lg.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-utils-size/lib/size-lg.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1635,8 +1635,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/lib/base.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/lib/base.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/lib/base.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/lib/base.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1664,8 +1664,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/node_modules/normalize.css/normalize.css", function() {
-			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/node_modules/normalize.css/normalize.css");
+		module.hot.accept("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/node_modules/normalize.css/normalize.css", function() {
+			var newContent = require("!!/home/evan/src/note-recognition/node_modules/rework-webpack-loader/index.js!/home/evan/src/note-recognition/node_modules/suitcss-base/node_modules/normalize.css/normalize.css");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
