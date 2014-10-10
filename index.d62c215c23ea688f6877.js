@@ -364,7 +364,7 @@
 	        button = $__2.button,
 	        span = $__2.span,
 	        isWaitOnIncorrectGuessActive = (new Date) - guessedAt < constants.waitOnIncorrectGuess;
-	    return div({className: 'GuessEntry Grid--withGutter' + ' Grid--withVerticalGutter'}, sortedNotes.map((function(note) {
+	    return div({className: 'GuessEntry Grid--withGutter' + ' Grid--md-withVerticalGutter' + ' Grid--alignCenter'}, sortedNotes.map((function(note) {
 	      var className = 'Button Button--default' + ' GuessEntry-button u-sizeFillAlt',
 	          text = note;
 	      if (guess === note && isGuessCorrect != null) {
@@ -376,7 +376,7 @@
 	          text = span({className: 'fa fa-times'});
 	        }
 	      }
-	      return div({className: 'Grid-cell u-sm-size1of4 u-md-size1of7'}, button({
+	      return div({className: 'Grid-cell u-sm-size1of1 u-md-size1of4'}, button({
 	        className: className,
 	        onClick: onClick
 	      }, text));
@@ -555,7 +555,7 @@
 	__webpack_require__(33);
 	__webpack_require__(18);
 	__webpack_require__(31);
-	module.exports = "\n\n/* Copied from `node_modules/suitcss-utils-size/lib/size-sm.css`\n   This doesn't work unless redefined here, not sure why */\n\n@media (max-width:460px) {\n  .u-sm-size1of4 {\n    width: 25% !important;\n  }\n}\n\n@media (min-width:460px) {\n  .u-md-size1of7 {\n    width: 14.285714285714285% !important;\n  }\n}\n\n:root {\n  box-sizing: border-box;\n}\n\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\n\n\n.Grid--withVerticalGutter > .Grid-cell {\n  padding-bottom: 10px !important;\n}\n\n.Button--default {\n  background-color: #eee;\n  color: #555;\n  border-color: #bbb #bbb #999;\n  border-radius: 4px;\n}";
+	module.exports = "\n\n/* Copied from `node_modules/suitcss-utils-size/lib/size-sm.css`\n   This doesn't work unless redefined here, not sure why */\n\n@media (max-width:460px) {\n  .u-sm-size1of4 {\n    width: 25% !important;\n  }\n}\n\n@media (min-width:460px) {\n  .u-md-size1of7 {\n    width: 14.285714285714285% !important;\n  }\n\n  .Grid--md-withVerticalGutter > .Grid-cell {\n    padding-bottom: 10px !important;\n  }\n}\n\n:root {\n  box-sizing: border-box;\n}\n\n*,\n*:before,\n*:after {\n  box-sizing: inherit;\n}\n\n\n\n.Button--default {\n  background-color: #eee;\n  color: #555;\n  border-color: #bbb #bbb #999;\n  border-radius: 12px;\n}";
 
 /***/ },
 /* 14 */
@@ -797,7 +797,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(12);
-	module.exports = ".GuessEntry {\n  margin-top: 20px;\n}\n\n.GuessEntry-button {\n  height: 50px;\n  font-size: 20px;\n}\n\n.GuessEntry-button--correct {\n  background-color: green;\n  color: white;\n}\n\n.GuessEntry-button--incorrect {\n  background-color: #f00000;\n  color: white;\n}";
+	module.exports = ".GuessEntry {\n  margin-top: 20px;\n}\n\n.GuessEntry-button {\n  height: 46px;\n  font-size: 20px;\n}\n\n.GuessEntry-button--correct {\n  background-color: green;\n  color: white;\n}\n\n.GuessEntry-button--incorrect {\n  background-color: #f00000;\n  color: white;\n}";
 
 /***/ },
 /* 23 */
