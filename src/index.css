@@ -10,6 +10,8 @@
   --space-small-px: 10px;
   --space-medium-px: 15px;
   --space-large-px: 20px;
+
+  --border-width-Button: 1px;
 }
 
 /* Copied from `node_modules/suitcss-utils-size/lib/size-sm.css`

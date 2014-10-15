@@ -4,6 +4,8 @@ var React = require('react')
 
 require('suitcss-components-grid')
 require('suitcss-components-button')
+require('suitcss-components-button-group')
+require('suitcss-components-button-group/button-group.plugin.css')
 require('suitcss-utils-size')
 require('../index.css')
 require('./index.css')
@@ -36,9 +38,7 @@ module.exports =
                   (new Date) - guessedAt < constants.waitOnIncorrectGuess
 
 
-            return div( {className: 'GuessEntry Grid--withGutter'
-                                    + ' Grid--md-withVerticalGutter'
-                                    + ' Grid--alignCenter'}
+            return div( {className: 'GuessEntry ButtonGroup ButtonGroup--borderCollapse'}
                       , sortedNotes.map(note => {
                           var className = 'Button Button--default'
                                           + ' GuessEntry-button u-sizeFillAlt'
@@ -54,7 +54,7 @@ module.exports =
                             }
                           }
 
-                          return div({className: 'Grid-cell u-sm-size1of1 u-md-size1of4'},
+                          return div({className: 'ButtonGroup-item u-sm-size1of1 u-md-size1of4'},
                                    button({className, onClick}, text))
                         })
                       )
